@@ -1,0 +1,38 @@
+body {
+  background-color: ivory;
+}
+
+h1 {
+  color: navy;
+  text-align: center;
+}
+
+h2 {
+  color: navy;
+  border-bottom: dashed gray;
+  font-weight: bold;
+}
+
+h3 {
+  font-family: cursive;
+  color: rebeccapurple;
+}
+
+p {
+  font-size: small;
+  background-color: lavenderblush;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+}
+
+a:link {
+  color: rebeccapurple;
+}
+
+a:visited {
+  color: blue;
+}
+
+a:hover {
+  text-decoration: none;
+}
