@@ -15,18 +15,21 @@ h1 {
 h2 {
 	font-family: cursive;
 	color: #3f3faf;
-	background-image: linear-gradient(white, #ffefaf);
+
+	background-image: linear-gradient(to right, white, #ffefaf);
 }
 
 div#zentai {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	grid-auto-rows: 200px;
-	column-gap: 10px;
+
+	gap: 10px;
 	width: 1024px;
 }
 
 div#zentai > div {
+
 	margin: 0;
 	padding: 5px;
 	background-color: #ffefaf;
