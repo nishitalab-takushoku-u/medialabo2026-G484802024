@@ -55,5 +55,11 @@
     、ただの静的な画面だったHTMLが、JavaScriptと組み合わせることで一気に動きのあるWebサイトに変わる面白さを体感できました!</p>
    <p>演習の成果:<a href="practice-eventdom/tashizan.html"> 演習4-10: 足し算ページ</a></p>
    <h3>第5回 イベント処理</h3>  
+   <p>第5回の講義では、これまでコンソール（`console.log`）に出力していたデータを、プログラムを用いてブラウザ上のHTML画面へ動的に反映させる「DOM操作」を新たに学習しました。
+    具体的には、`document.querySelector` で特定の要素（`h2#addr` や `h2#dept`）を正確に選択し、`document.createElement` で新しく `p` や `ul`、`li` といった要素をメモリ上に生成する手順を習得しました。
+    また、生成した要素に `textContent` でテキストを代入したり、`setAttribute` で属性（`src` や `href`）を設定する手法を学びました。
+    最も重要な新知識として、これらをHTMLに配置する際、`insertAdjacentElement` メソッドを用い、内部の最後を指定する `'beforeend'` や、直後を指定する `'afterend'` といったキーワードで挿入位置を厳密に制御する方法をマスターしました。
+    さらに、配列データを繰り返し処理する `for-of` 構文を組み合わせ、複数の箇条書き要素を一括で組み立てて画面をダイナミックに書き換えるWebプログラミングの本質的な仕組みを理解しました!</p>
+   <p>演習の成果:<a href="practice-dom2/dom2-exercise.html"> 演習5-7 DOMプログラミング(2)</a></p>
   </body>
 </html>
