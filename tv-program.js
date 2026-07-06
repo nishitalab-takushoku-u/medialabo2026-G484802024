@@ -1,11 +1,9 @@
-
-// 課題3-2 のプログラムはこの関数の中に記述すること
 function print(data) {
     for (let program of data.list.g1) {
         console.log('--- 番組情報 ---');
         console.log('開始時刻: ' + program.start_time);
         console.log('終了時刻: ' + program.end_time);
-        console.log('チャンネル: ' + program.service.name); // 階層構造をドットで参照
+        console.log('チャンネル: ' + program.service.name);
         console.log('番組名: ' + program.title);
         console.log('サブタイトル: ' + program.subtitle);
         console.log('説明文: ' + program.content);
@@ -13,41 +11,58 @@ function print(data) {
     }
 }
 
-
-// 課題5-1 の関数 printDom() はここに記述すること
 function printDom(data) {
+    var resultDiv = document.querySelector('div#result');
+    resultDiv.innerHTML = '';
 
+    var table = document.createElement('table');
+
+    var headerHtml = '<thead>' +
+                        '<tr>' +
+                            '<th>start_time<br>(番組開始時刻)</th>' +
+                            '<th>end_time<br>(番組終了時刻)</th>' +
+                            '<th>service.name<br>(チャンネル)</th>' +
+                            '<th>title<br>(番組名)</th>' +
+                            '<th>subtitle<br>(番組サブタイトル)</th>' +
+                            '<th>content<br>(番組説明文)</th>' +
+                            '<th>act<br>(出演者)</th>' +
+                        '</tr>' +
+                     '</thead>';
+
+    var bodyHtml = '';
+
+    for (var program of data.list.g1) {
+        bodyHtml = bodyHtml + '<tr>' +
+                   '<td>' + program.start_time + '</td>' +
+                   '<td>' + program.end_time + '</td>' +
+                   '<td>' + program.service.name + '</td>' +
+                   '<td>' + program.title + '</td>' +
+                   '<td>' + program.subtitle + '</td>' +
+                   '<td>' + program.content + '</td>' +
+                   '<td>' + program.act + '</td>' +
+                   '</tr>';
+    }
+
+    table.innerHTML = headerHtml + '<tbody>' + bodyHtml + '</tbody>';
+    resultDiv.insertAdjacentElement('beforeend', table);
 }
 
-// 課題6-1 のイベントハンドラ登録処理は以下に記述
-
-
-
-
-// 課題6-1 のイベントハンドラ sendRequest() の定義
 function sendRequest() {
 
 }
 
-// 課題6-1: 通信が成功した時の処理は以下に記述
 function showResult(resp) {
 
 }
 
-// 課題6-1: 通信エラーが発生した時の処理
 function showError(err) {
     console.log(err);
 }
 
-// 課題6-1: 通信の最後にいつも実行する処理
 function finish() {
     console.log('Ajax 通信が終わりました');
 }
 
-////////////////////////////////////////
-// 以下はテレビ番組表のデータサンプル
-// 注意: 第5回までは以下を変更しないこと！
-// 注意2: 課題6-1 で以下をすべて削除すること
 let data = {
   "list": {
     "g1": [
@@ -118,9 +133,9 @@ let data = {
           }
         },
         "title": "パラスポーツ×アニメ「アニ×パラ」▽パラアルペンスキーテーマ曲江口寿史×ＡＣＣ",
-        "subtitle": "パラスポーツの魅力をアニメで伝える番組。高速滑走に挑む精神力が試されるパラアルペンスキーを描く。キャラ原案：江口寿史／曲：Ａｗｅｓｏｍｅ　Ｃｉｔｙ　Ｃｌｕｂ",
-        "content": "パラスポーツの魅力をアニメで伝えるプロジェクトの第１３弾。圧倒的なスピードに挑む「パラアルペンスキー」の世界を江口寿史原案の魅力的なキャラクターで描く。平昌パラリンピック金メダリストの村岡桃佳選手への取材から生まれた主人公・桃は、スピードへの恐怖を克服していく。その壁を越えた先にあるものとは…　テーマ曲　♪「Ｏｎ　Ｙｏｕｒ　Ｍａｒｋ」はＡｗｅｓｏｍｅ　Ｃｉｔｙ　Ｃｌｕｂが手掛けた。",
-        "act": "【声】松本まりか，【出演】Ａｗｅｓｏｍｅ　Ｃｉｔｙ　Ｃｌｕｂ，【監督】西村一彦，【脚本】加納新太，【原案】江口寿史",
+        "subtitle": "パラスポーツの魅力をアニメで伝える番組。高速滑走に挑む精神力が試されるパラアルペンスキーを描く。キャラ原案：江口寿史／曲：Ａｗｅｓｏｍｅ Ｃｉｔｙ Ｃｌｕｂ",
+        "content": "パラスポーツの魅力をアニメで伝えるプロジェクトの第１３弾。圧倒的なスピードに挑む「パラアルペンスキー」の世界を江口寿史原案の魅力的なキャラクターで描く。平昌パラリンピック金メダリストの村岡桃佳選手への取材から生まれた主人公・桃は、スピードへの恐怖を克服していく。その壁を越えた先にあるものとは… テーマ曲 ♪「Ｏｎ Ｙｏｕｒ Ｍａｒｋ」はＡｗｅｓｏｍｅ Ｃｉｔｙ Ｃｌｕｂが手掛けた。",
+        "act": "【声】松本まりか，【出演】Ａｗｅｓｏｍｅ Ｃｉｔｙ Ｃｌｕｂ，【監督】西村一彦，【脚本】加納新太，【原案】江口寿史",
         "genres": [
           "0700"
         ]
@@ -128,4 +143,3 @@ let data = {
     ]
   }
 };
-
