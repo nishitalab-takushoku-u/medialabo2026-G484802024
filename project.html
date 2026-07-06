@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <script src="tv-program.js" defer></script>
     <meta charset="UTF-8">
     <title>NHK番組表 検索システム</title>
     <style>
         body { 
-            font-family: sans-serif; 
-            padding: 20px; 
             font-family: sans-serif; 
             padding: 20px; 
             background-image: url("haikei.jpg");
@@ -34,6 +31,7 @@
             width: 100%; 
             border-collapse: collapse; 
             margin-top: 15px; 
+            background-color: white;
         }
         th, td { 
             border: 1px solid black; 
@@ -42,12 +40,7 @@
             font-size: 13px; 
         }
         th { 
-            background-color: white; 
-        }
-        .loading { 
-            color: 'gray'; 
-            font-style: italic; 
-            margin-top: 15px; 
+            background-color: #eee; 
         }
     </style>
 </head>
@@ -57,103 +50,25 @@
 
     <div class="search-box">
         <form id="searchForm">
-            <label for="service">(チャンネル):</label>
+            <label for="service">チャンネル:</label>
             <select id="service" name="service">
                 <option value="g1">g1 (NHK総合1)</option>
                 <option value="e1">e1 (Eテレ1)</option>
             </select>
 
-            <label for="genre">(ジャンル):</label>
+            <label for="genre">ジャンル:</label>
             <select id="genre" name="genre">
-                <option value="0000">0000 ... ニュース・報道</option>
-                <option value="0100">0100 ... スポーツ</option>
-                <option value="0205">0205 ... 情報・ワイドショー</option>
-                <option value="0300">0300 ... ドラマ</option>
-                <option value="0409">0409 ... 音楽</option>
-                <option value="0502">0502 ... バラエティ</option>
-                <option value="0600">0600 ... 映画</option>
-                <option value="0700">0700 ... アニメ</option>
-                <option value="0800">0800 ... ドキュメンタリー・教養</option>
-                <option value="0903">0903 ... 劇場・公演</option>
-                <option value="1000">1000 ... 趣味・教育</option>
-                <option value="1100">1100 ... 福祉</option>
+                <option value="0000">ニュース・報道</option>
+                <option value="0100">スポーツ</option>
+                <option value="0409">音楽</option>
             </select>
 
             <button type="submit">検索実行</button>
         </form>
     </div>
 
-    <div id="statusMessage" class="loading" style="display: none;">検索中...</div>
+    <div id="result"></div>
 
-    <div id="resultContainer" style="display: none;">
-        <h2>検索結果一覧</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>start_time<br>(番組開始時刻)</th>
-                    <th>end_time<br>(番組終了時刻)</th>
-                    <th>service.name<br>(チャンネル)</th> 
-                    <th>title<br>(番組名)</th>
-                    <th>subtitle<br>(番組サブタイトル)</th>
-                    <th>content<br>(番組説明文)</th>
-                    <th>act<br>(出演者)</th>
-                </tr>
-            </thead>
-            <tbody id="resultBody">
-            </tbody>
-        </table>
-    </div>
-
-    <script>
-        document.getElementById('searchForm').addEventListener('submit', function(event) {
-            event.preventDefault(); 
-
-            document.getElementById('resultContainer').style.display = 'none';
-            document.getElementById('statusMessage').style.display = 'block';
-
-            const mockDatabase = [
-                {
-                    start_time: "2022年03月04日 04:35:00",
-                    end_time: "2022年03月04日 04:40:00",
-                    service_name: "NHK総合1", 
-                    title: "みんなのうた「ごっつぉさま」／「超変身！ミネラルフォーマーズ」",
-                    subtitle: "「ごっつぉさま」うた：須貝智郎／「超変身！ミネラルフォーマーズ」うた：鬼龍院翔ｆｒｏｍゴールデンボンバー",
-                    content: "「ごっつぉさま」うた：須貝智郎／「超変身！ミネラルフォーマーズ」うた：鬼龍院翔ｆｒｏｍゴールデンボンバー",
-                    act: "" 
-                },
-                {
-                    start_time: "2022年03月04日 23:05:00",
-                    end_time: "2022年03月04日 23:10:00",
-                    service_name: "NHK総合1", 
-                    title: "パラスポーツ×アニメ「アニ×パラ」▽パラアルペンスキーテーマ曲江口寿史×ＡＣＣ",
-                    subtitle: "パラスポーツの魅力をアニメで伝える番組。高速滑走に挑む精神力が試されるパラアルペンスキーを描く。キャラ原案：江口寿史／曲：Ａｗｅｓｏｍｅ Awesome City Club",
-                    content: "パラスポーツの魅力をアニメで伝えるプロジェクトの第１３弾。圧倒的なスピードに挑む「パラアルペンスキー」の世界を江口寿史原案の魅力的なキャラクターで描く。平昌パラリンピック金メダリストの村岡桃佳選手への取材から生まれた主人公・桃は、スピードへの恐怖を克服していく。その壁を越えた先にあるものとは… テーマ曲 ♪「Ｏｎ Ｙｏｕｒ Ｍａｒｋ」はＡｗｅｓｏｍｅ Ｃｉｔｙ Ｃｌｕｂが手掛けた。",
-                    act: "【声】松本まりか，【出演】Awesome City Club，【監督】西村一彦，【脚本】加納新太，【原案】江口寿史"
-                }
-            ];
-
-            const tbody = document.getElementById('resultBody');
-            tbody.innerHTML = ''; 
-
-            mockDatabase.forEach(function(item) {
-                const tr = document.createElement('tr');
-                
-                tr.innerHTML = '<td>' + item.start_time + '</td>' +
-                               '<td>' + item.end_time + '</td>' +
-                               '<td>' + item.service_name + '</td>' +
-                               '<td>' + item.title + '</td>' +
-                               '<td>' + item.subtitle + '</td>' +
-                               '<td>' + item.content + '</td>' +
-                               '<td>' + item.act + '</td>';
-                               
-                tbody.appendChild(tr);
-            });
-
-            document.getElementById('statusMessage').style.display = 'none';
-            document.getElementById('resultContainer').style.display = 'block';
-        });
-    </script>
-  
+    <script src="tv-program.js"></script>
 </body>
 </html>
-
