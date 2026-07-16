@@ -1,27 +1,26 @@
 body {
   background-color: ivory;
+  background-image: url("haikei.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+h1, h2, h3{
+    font-family: 'Comic Sans MS', 'HG丸ｺﾞｼｯｸM-PRO', 'Rounded Mplus 1c', sans-serif;
+    font-size: 32px;
+    color: rebeccapurple;
+    text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;
+    margin-bottom: 30px;
 }
 
 h1 {
-  color: navy;
   text-align: center;
-}
-
-h2 {
-  color: navy;
-  border-bottom: dashed gray;
-  font-weight: bold;
-}
-
-h3 {
-  font-family: cursive;
-  color: rebeccapurple;
 }
 
 p {
   font-size: small;
-  background-color: lavenderblush;
-  padding: 8px 12px;
   margin-bottom: 10px;
 }
 
@@ -35,4 +34,34 @@ a:visited {
 
 a:hover {
   text-decoration: none;
+}
+
+.search-box { 
+  margin-bottom: 20px; 
+}
+
+.search-box label { 
+  font-weight: bold; 
+}
+
+.search-box select, .search-box button { 
+  padding: 5px; 
+  margin-right: 15px; 
+}
+
+table { 
+  width: 100%; 
+  border-collapse: collapse; 
+  margin-top: 15px; 
+  background-color: white;
+}
+
+th, td { 
+  border: 1px solid black; 
+  padding: 8px; 
+  font-size: 13px; 
+}
+
+th { 
+  background-color: #eee; 
 }
