@@ -3,46 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>NHK番組表 検索システム</title>
-    <style>
-        body { 
-            font-family: sans-serif; 
-            padding: 20px; 
-            background-image: url("haikei.jpg");
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-attachment: fixed;
-        }
-        .search-box { 
-            margin-bottom: 20px; 
-            padding: 15px; 
-            background-color: white; 
-            border: 1px solid white; 
-        }
-        .search-box label { 
-            font-weight: bold; 
-            margin-right: 5px; 
-        }
-        .search-box select, .search-box button { 
-            padding: 5px; 
-            margin-right: 15px; 
-        }
-        table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            margin-top: 15px; 
-            background-color: white;
-        }
-        th, td { 
-            border: 1px solid black; 
-            padding: 8px; 
-            text-align: left; 
-            font-size: 13px; 
-        }
-        th { 
-            background-color: #eee; 
-        }
-    </style>
+    <link rel="stylesheet" href="project.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
+    <script src="tv-program.js" defer></script>
 </head>
 <body>
 
@@ -60,15 +23,23 @@
             <select id="genre" name="genre">
                 <option value="0000">ニュース・報道</option>
                 <option value="0100">スポーツ</option>
+                <option value="0205">情報・ワイドショー</option>
+                <option value="0300">ドラマ</option>
                 <option value="0409">音楽</option>
+                <option value="0502">バラエティ</option>
+                <option value="0600">映画</option>
+                <option value="0700">アニメ</option>
+                <option value="0800">ドキュメンタリー・教養</option>
+                <option value="0903">劇場・公演</option>
+                <option value="1000">趣味・教育</option>
+                <option value="1100">福祉</option>
             </select>
 
-            <button type="submit">検索実行</button>
+            <button type="button" id="submitButton">検索</button>
         </form>
     </div>
 
     <div id="result"></div>
 
-    <script src="tv-program.js"></script>
 </body>
 </html>
